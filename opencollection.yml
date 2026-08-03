@@ -1,0 +1,121 @@
+opencollection: 1.0.0
+
+info:
+  name: prorequest ODATA Service
+
+request:
+  scripts:
+    - type: before-request
+      code: "/**\r
+
+        \ * Always authenticate the request using the currently selected SAP user.\r
+
+        \ *\r
+
+        \ * Required environment variables:\r
+
+        \ * - sap_username\r
+
+        \ * - sap_password\r
+
+        \ */\r
+
+        \r
+
+        const requestUrl = bru.interpolate(req.getUrl().toString());\r
+
+        const cookieJar = bru.cookies.jar();\r
+
+        \r
+
+        const username = bru.getEnvVar(\"sap_username\");\r
+
+        const password = bru.getEnvVar(\"sap_password\");\r
+
+        \r
+
+        if (!username) {\r
+
+        \    throw new Error(\"Environment variable 'sap_username' is missing.\");\r
+
+        }\r
+
+        \r
+
+        if (!password) {\r
+
+        \    throw new Error(\"Environment variable 'sap_password' is missing.\");\r
+
+        }\r
+
+        \r
+
+        /*\r
+
+        \ * Clear SAP cookies stored for the request URL.\r
+
+        \ *\r
+
+        \ * The SAP hostname must be added to:\r
+
+        \ * Cookies → Domains Allowlist\r
+
+        \ */\r
+
+        cookieJar.deleteCookies(requestUrl, (error) => {\r
+
+        \    if (error) {\r
+
+        \        console.error(\"Unable to clear SAP cookies:\", error);\r
+
+        \    } else {\r
+
+        \        console.log(\"SAP session cookies cleared:\", requestUrl);\r
+
+        \    }\r
+
+        });\r
+
+        \r
+
+        /*\r
+
+        \ * Remove manually added cookie headers.\r
+
+        \ * Cookie-jar-generated headers are prevented by Disable cookie jar.\r
+
+        \ */\r
+
+        req.deleteHeader(\"Cookie\");\r
+
+        \r
+
+        /*\r
+
+        \ * Explicitly replace any inherited or previously generated\r
+
+        \ * Authorization header with the currently selected credentials.\r
+
+        \ */\r
+
+        const credentials = `${username}:${password}`;\r
+
+        const basicToken = btoa(credentials);\r
+
+        \r
+
+        req.setHeader(\"Authorization\", `Basic ${basicToken}`);\r
+
+        \r
+
+        req.setHeader(\"Cache-Control\", \"no-cache\");\r
+
+        \r
+
+        console.log(\"Request authenticated as SAP user:\", username);"
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

@@ -1,0 +1,28 @@
+info:
+  name: Get Workflow Tasks
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{HOST}}{{SERVICE}}CNMA_WFTASK?sap-client=300&sap-language=en"
+  headers:
+    - name: x-csrf-token
+      value: fetch
+  params:
+    - name: sap-client
+      value: "300"
+      type: query
+    - name: sap-language
+      value: en
+      type: query
+  auth:
+    type: basic
+    username: "{{sap_username}}"
+    password: "{{sap_password}}"
+
+settings:
+  encodeUrl: false
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
