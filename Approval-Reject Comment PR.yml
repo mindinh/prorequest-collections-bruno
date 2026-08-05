@@ -1,0 +1,36 @@
+info:
+  name: Approval/Reject Comment PR
+  type: http
+  seq: 7
+
+http:
+  method: POST
+  url: "{{HOST}}{{SERVICE}}CNMA_PRHEADER(DocCategory='BUS2105',DocumentNumber='1500000194')/SAP__self.comment?sap-language=en&sap-client=300"
+  headers:
+    - name: x-csrf-token
+      value: a-qMe3C_g0e6syHp-uk6PQ==
+  params:
+    - name: sap-language
+      value: en
+      type: query
+    - name: sap-client
+      value: "300"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "NoteText": "Test Approval Comment",
+        "isGeneral": true,
+        "Decision": ""
+      }
+  auth:
+    type: basic
+    username: "{{sap_username}}"
+    password: "{{sap_password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
