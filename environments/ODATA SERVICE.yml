@@ -1,4 +1,5 @@
 name: ODATA SERVICE
+color: "#346AB2"
 variables:
   - name: HOST
     value: https://vhvjtds4ci.sap.vietjetair.com:44300
@@ -7,8 +8,8 @@ variables:
     value: /sap/opu/odata4/sap/za_cnma_prorequest/srvd_a2x/sap/za_cnma_prorequest/0001/
     description: ""
   - name: sap_username
-    value: CONARUM2
+    value: CONARUM1
     description: ""
   - name: sap_password
-    value: Conarum@02
+    value: Conarum@01
     description: ""

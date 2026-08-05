@@ -1,11 +1,11 @@
 info:
-  name: Get PR Details
+  name: Get PO Details
   type: http
-  seq: 2
+  seq: 6
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_PRHEADER(DocCategory='BUS2105',DocumentNumber='1200000071')?sap-client=300&sap-language=en&$expand=_HeaderText,_ApprovalStep,_Comment,_Item,_Attachment,_PurposeText,_PaidByText,_BankDetails"
+  url: "{{HOST}}{{SERVICE}}CNMA_POHEADER(DocCategory='BUS2012',DocumentNumber='4300000225')?sap-client=300&sap-language=en&$expand=_HeaderText,_ApprovalStep,_Item,_Attachment"
   params:
     - name: sap-client
       value: "300"
@@ -14,7 +14,7 @@ http:
       value: en
       type: query
     - name: $expand
-      value: _HeaderText,_ApprovalStep,_Comment,_Item,_Attachment,_PurposeText,_PaidByText,_BankDetails
+      value: _HeaderText,_ApprovalStep,_Item,_Attachment
       type: query
   auth:
     type: basic
