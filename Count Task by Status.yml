@@ -1,0 +1,25 @@
+info:
+  name: Count Task by Status
+  type: http
+  seq: 11
+
+http:
+  method: GET
+  url: "{{HOST}}{{SERVICE}}CNMA_TASKBYSTATUS?sap-client=300&sap-language=en"
+  params:
+    - name: sap-client
+      value: "300"
+      type: query
+    - name: sap-language
+      value: en
+      type: query
+  auth:
+    type: basic
+    username: "{{sap_username}}"
+    password: "{{sap_username}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

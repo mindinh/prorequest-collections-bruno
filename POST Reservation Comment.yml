@@ -1,0 +1,36 @@
+info:
+  name: POST Reservation Comment
+  type: http
+  seq: 11
+
+http:
+  method: POST
+  url: "{{HOST}}{{SERVICE}}CNMA_RESVHEADER(DocCategory='ZBUS2093',DocumentNumber='0000000888')/SAP__self.comment?sap-language=en&sap-client=300"
+  headers:
+    - name: x-csrf-token
+      value: y2EH2rkLKkpaevQ2Y4XK2w==
+  params:
+    - name: sap-language
+      value: en
+      type: query
+    - name: sap-client
+      value: "300"
+      type: query
+  body:
+    type: json
+    data: |-
+      {
+        "NoteText": "test comment",
+        "isGeneral": true,
+        "Decision": ""
+      }
+  auth:
+    type: basic
+    username: "{{sap_username}}"
+    password: "{{sap_password}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

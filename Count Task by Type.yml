@@ -1,20 +1,17 @@
 info:
-  name: Get PO Details
+  name: Count Task by Type
   type: http
-  seq: 6
+  seq: 12
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_POHEADER(DocCategory='BUS2012',DocumentNumber='4800000016')?sap-client=300&sap-language=en&$expand=_HeaderText,_ApprovalStep,_Item,_Attachment,_Comment"
+  url: "{{HOST}}{{SERVICE}}CNMA_TASKBYDOCTYPE?sap-client=300&sap-language=en"
   params:
     - name: sap-client
       value: "300"
       type: query
     - name: sap-language
       value: en
-      type: query
-    - name: $expand
-      value: _HeaderText,_ApprovalStep,_Item,_Attachment,_Comment
       type: query
   auth:
     type: basic
