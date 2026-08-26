@@ -1,14 +1,17 @@
 info:
-  name: Get Attachment
+  name: Get All Users
   type: http
-  seq: 4
+  seq: 13
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_ATTACH_CONTENT('FOL46000000000004EXT51000000000304')/Content?sap-client=300"
+  url: "{{HOST}}{{SERVICE}}/CNMA_BUSUSER?sap-client=300&sap-language=en"
   params:
     - name: sap-client
       value: "300"
+      type: query
+    - name: sap-language
+      value: en
       type: query
   auth:
     type: basic
@@ -20,4 +23,3 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
-  forwardAuthorizationHeader: true

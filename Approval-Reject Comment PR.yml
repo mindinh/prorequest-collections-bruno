@@ -5,7 +5,7 @@ info:
 
 http:
   method: POST
-  url: "{{HOST}}{{SERVICE}}CNMA_PRHEADER(DocCategory='BUS2105',DocumentNumber='1500000194')/SAP__self.comment?sap-language=en&sap-client=300"
+  url: "{{HOST}}{{SERVICE}}CNMA_PRHEADER(DocCategory='BUS2105',DocumentNumber='1300000404')/SAP__self.comment?sap-language=en&sap-client=300"
   headers:
     - name: x-csrf-token
       value: a-qMe3C_g0e6syHp-uk6PQ==
@@ -20,9 +20,11 @@ http:
     type: json
     data: |-
       {
-        "NoteText": "Test Approval Comment",
-        "isGeneral": true,
-        "Decision": ""
+        "TASKID": "",
+        "NOTETEXT": "approval comment",
+        "ISGENERAL": false,
+        "DECISION": "A",
+        "TAGGEDUSER" : []
       }
   auth:
     type: basic
@@ -34,3 +36,4 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+  forwardAuthorizationHeader: true

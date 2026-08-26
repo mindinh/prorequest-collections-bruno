@@ -1,14 +1,14 @@
 info:
-  name: Post PO Comment
+  name: Forward Tasks
   type: http
-  seq: 8
+  seq: 17
 
 http:
   method: POST
-  url: "{{HOST}}{{SERVICE}}CNMA_POHEADER(DocCategory='BUS2012',DocumentNumber='4600000010')/SAP__self.comment?sap-language=en&sap-client=300"
+  url: "{{HOST}}{{SERVICE}}CNMA_PRHEADER(DocCategory='BUS2105',DocumentNumber='1100000284')/SAP__self.forward?sap-language=en&sap-client=300"
   headers:
     - name: x-csrf-token
-      value: qkp-TKFNunjlvM8DeRsl0w==
+      value: 6nANjOeNtEUXfKzsZwQt9Q==
   params:
     - name: sap-language
       value: en
@@ -20,11 +20,9 @@ http:
     type: json
     data: |-
       {
-        "TASKID": "",
-        "NOTETEXT": "test comment for claim",
-        "ISGENERAL": true,
-        "DECISION": "",
-        "TAGGEDUSER" : []
+        "task_id": "34413",
+        "notetext": "Task Forwarded 2608",
+        "to_user": "CONARUM3"
       }
   auth:
     type: basic
