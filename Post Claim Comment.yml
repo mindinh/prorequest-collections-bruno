@@ -1,14 +1,14 @@
 info:
-  name: Post PO Comment
+  name: Post Claim Comment
   type: http
-  seq: 8
+  seq: 16
 
 http:
   method: POST
-  url: "{{HOST}}{{SERVICE}}CNMA_POHEADER(DocCategory='BUS2012',DocumentNumber='4600000010')/SAP__self.comment?sap-language=en&sap-client=300"
+  url: "{{HOST}}{{SERVICE}}CNMA_CLAIMHEADER(DocCategory='CLAIM',DocumentNumber='0000000212')/SAP__self.comment?sap-language=en&sap-client=300"
   headers:
     - name: x-csrf-token
-      value: qkp-TKFNunjlvM8DeRsl0w==
+      value: fKn5EaM90dq3r643jaXf9g==
   params:
     - name: sap-language
       value: en
@@ -20,20 +20,17 @@ http:
     type: json
     data: |-
       {
-        "TASKID": "",
+        "TASKID": "212",
         "NOTETEXT": "test comment for claim",
         "ISGENERAL": true,
         "DECISION": "",
         "TAGGEDUSER" : []
       }
-  auth:
-    type: basic
-    username: "{{sap_username}}"
-    password: "{{sap_password}}"
+  auth: inherit
 
 settings:
   encodeUrl: true
   timeout: 0
   followRedirects: true
   maxRedirects: 5
-  forwardAuthorizationHeader: true
+  forwardAuthorizationHeader: false

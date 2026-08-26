@@ -5,10 +5,10 @@ info:
 
 http:
   method: POST
-  url: "{{HOST}}{{SERVICE}}CNMA_PRHEADER(DocCategory='BUS2105',DocumentNumber='1500000194')/SAP__self.comment?sap-language=en&sap-client=300"
+  url: "{{HOST}}{{SERVICE}}CNMA_PRHEADER(DocCategory='BUS2105',DocumentNumber='1300000404')/SAP__self.comment?sap-language=en&sap-client=300"
   headers:
     - name: x-csrf-token
-      value: a-qMe3C_g0e6syHp-uk6PQ==
+      value: BQWm3Lo0_Q5ts7Zb-UWbHQ==
   params:
     - name: sap-language
       value: en
@@ -20,9 +20,16 @@ http:
     type: json
     data: |-
       {
-        "NoteText": "test comment",
-        "isGeneral": true,
-        "Decision": ""
+        "TASKID": "",
+        "NOTETEXT": "test comment",
+        "ISGENERAL": true,
+        "DECISION": "",
+        "TAGGEDUSER": [
+          {
+            "USERNAME": "CONARUM",
+            "EMAIL": "giang.pham@conarum.com"
+          }
+        ]
       }
   auth:
     type: basic

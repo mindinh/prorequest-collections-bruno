@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_RESVHEADER(DocCategory='ZBUS2093',DocumentNumber='0000000888')?sap-client=300&sap-language=en&$expand=_Item,_Comment,_Attachment,_ApprovalStep"
+  url: "{{HOST}}{{SERVICE}}CNMA_RESVHEADER(DocCategory='ZBUS2093',DocumentNumber='0000000911')?sap-client=300&sap-language=en&$expand=_Item,_Comment,_Attachment,_ApprovalStep"
   params:
     - name: sap-client
       value: "300"
@@ -26,3 +26,4 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+  forwardAuthorizationHeader: true

@@ -16,6 +16,14 @@ http:
     - name: sap-language
       value: en
       type: query
+    - name: )$apply
+      value: |-
+        $apply=groupby(
+          (DocCategory),
+          aggregate($count as TaskCount)
+        )
+      type: query
+      disabled: true
   auth:
     type: basic
     username: "{{sap_username}}"
@@ -26,3 +34,4 @@ settings:
   timeout: 0
   followRedirects: true
   maxRedirects: 5
+  forwardAuthorizationHeader: true
