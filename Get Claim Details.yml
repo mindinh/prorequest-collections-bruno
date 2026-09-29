@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_CLAIMHEADER(DocCategory='CLAIM',DocumentNumber='0000000212')?sap-client=300&sap-language=en&$expand=_ApprovalStep,_Item,_Attachment,_Comment"
+  url: "{{HOST}}{{SERVICE}}CNMA_CLAIMHEADER(DocCategory='CLAIM',DocumentNumber='0000000221',ApproverNumber='1')?sap-client=300&sap-language=en&$expand=_ApprovalStep,_Item,_Attachment,_Comment"
   params:
     - name: sap-client
       value: "300"
@@ -16,7 +16,10 @@ http:
     - name: $expand
       value: _ApprovalStep,_Item,_Attachment,_Comment
       type: query
-  auth: inherit
+  auth:
+    type: basic
+    username: "{{sap_username}}"
+    password: "{{sap_password}}"
 
 settings:
   encodeUrl: true

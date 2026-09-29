@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_POHEADER(DocCategory='BUS2012',DocumentNumber='4700000192')?sap-client=300&sap-language=en&$expand=_HeaderText,_ApprovalStep,_Item($orderby=ItemNumber asc),_Attachment,_Comment,_HeaderNote"
+  url: "{{HOST}}{{SERVICE}}CNMA_POHEADER(DocCategory='BUS2012',DocumentNumber='4300000255')?sap-client=300&sap-language=en"
   params:
     - name: sap-client
       value: "300"
@@ -16,6 +16,7 @@ http:
     - name: $expand
       value: _HeaderText,_ApprovalStep,_Item($orderby=ItemNumber asc),_Attachment,_Comment,_HeaderNote
       type: query
+      disabled: true
   auth:
     type: basic
     username: "{{sap_username}}"

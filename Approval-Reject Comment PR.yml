@@ -24,7 +24,8 @@ http:
         "NOTETEXT": "approval comment",
         "ISGENERAL": false,
         "DECISION": "A",
-        "TAGGEDUSER" : []
+        "TAGGEDUSER" : [],
+        "FORWARD": false
       }
   auth:
     type: basic

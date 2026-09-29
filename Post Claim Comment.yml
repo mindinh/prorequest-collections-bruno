@@ -5,10 +5,10 @@ info:
 
 http:
   method: POST
-  url: "{{HOST}}{{SERVICE}}CNMA_CLAIMHEADER(DocCategory='CLAIM',DocumentNumber='0000000212')/SAP__self.comment?sap-language=en&sap-client=300"
+  url: "{{HOST}}{{SERVICE}}CNMA_CLAIMHEADER(DocCategory='CLAIM',DocumentNumber='0000000222',ApproverNumber='1')/SAP__self.comment?sap-language=en&sap-client=300"
   headers:
     - name: x-csrf-token
-      value: fKn5EaM90dq3r643jaXf9g==
+      value: HBV9p6Dtccr1OWRTB39PIw==
   params:
     - name: sap-language
       value: en
@@ -20,11 +20,17 @@ http:
     type: json
     data: |-
       {
-        "TASKID": "212",
-        "NOTETEXT": "test comment for claim",
+        "TASKID": "2221",
+        "NOTETEXT": "test CC for claim",
         "ISGENERAL": true,
         "DECISION": "",
-        "TAGGEDUSER" : []
+        "TAGGEDUSER" : [
+          {
+            "USERNAME": "CONARUM3",
+            "EMAIL": "minh.dinh@conarum.com"
+          }
+        ],
+        "FORWARD": false
       }
   auth: inherit
 
@@ -34,3 +40,5 @@ settings:
   followRedirects: true
   maxRedirects: 5
   forwardAuthorizationHeader: false
+
+docs: Gọi kèm với Approve/Reject claim

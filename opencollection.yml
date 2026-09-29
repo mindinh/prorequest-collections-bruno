@@ -13,6 +13,65 @@ config:
         username: ""
         password: ""
       bypassProxy: ""
+
+request:
+  scripts:
+    - type: before-request
+      code: |-
+        /**
+         * Always authenticate the request using the currently selected SAP user.
+         *
+         * Required environment variables:
+         * - sap_username
+         * - sap_password
+         */
+
+        const requestUrl = bru.interpolate(req.getUrl().toString());
+        const cookieJar = bru.cookies.jar();
+
+        const username = bru.getEnvVar("sap_username");
+        const password = bru.getEnvVar("sap_password");
+
+        if (!username) {
+            throw new Error("Environment variable 'sap_username' is missing.");
+        }
+
+        if (!password) {
+            throw new Error("Environment variable 'sap_password' is missing.");
+        }
+
+        /*
+         * Clear SAP cookies stored for the request URL.
+         *
+         * The SAP hostname must be added to:
+         * Cookies → Domains Allowlist
+         */
+        cookieJar.deleteCookies(requestUrl, (error) => {
+            if (error) {
+                console.error("Unable to clear SAP cookies:", error);
+            } else {
+                console.log("SAP session cookies cleared:", requestUrl);
+            }
+        });
+
+        /*
+         * Remove manually added cookie headers.
+         * Cookie-jar-generated headers are prevented by Disable cookie jar.
+         */
+        req.deleteHeader("Cookie");
+
+        /*
+         * Explicitly replace any inherited or previously generated
+         * Authorization header with the currently selected credentials.
+         */
+        const credentials = `${username}:${password}`;
+        const basicToken = btoa(credentials);
+
+        req.setHeader("Authorization", `Basic ${basicToken}`);
+
+        req.setHeader("Cache-Control", "no-cache");
+
+        console.log("Request authenticated as SAP user:", username);
 bundled: false
 extensions:
   bruno:
