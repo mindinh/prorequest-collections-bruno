@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_ATTACH_CONTENT('FOL46000000000004EXT51000000000304')/Content?sap-client=300"
+  url: "{{HOST}}{{SERVICE}}CNMA_ATTACH_CONTENT('FOL46000000000004EXT51000000000670')/Content?sap-client=300"
   params:
     - name: sap-client
       value: "300"

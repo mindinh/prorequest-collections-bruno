@@ -5,7 +5,7 @@ info:
 
 http:
   method: GET
-  url: "{{HOST}}{{SERVICE}}CNMA_WFTASK?sap-client=300&sap-language=en"
+  url: "{{HOST}}{{SERVICE}}CNMA_WFTASK?sap-client=300&sap-language=en&$orderby=TaskCreationDateTime desc"
   headers:
     - name: x-csrf-token
       value: fetch
@@ -16,6 +16,17 @@ http:
     - name: sap-language
       value: en
       type: query
+    - name: $orderby
+      value: TaskCreationDateTime desc
+      type: query
+    - name: $filter
+      value: WorkflowTaskStatus eq 'IN PROCESSING'
+      type: query
+      disabled: true
+    - name: $count
+      value: "true"
+      type: query
+      disabled: true
     - name: )$apply
       value: |-
         $apply=groupby(

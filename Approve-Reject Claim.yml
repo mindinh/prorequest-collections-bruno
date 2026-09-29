@@ -8,7 +8,7 @@ http:
   url: "{{HOST}}{{SERVICE}}CNMA_CLAIMHEADER(DocCategory='CLAIM',DocumentNumber='0000000212')/SAP__self.approve?sap-language=en&sap-client=300"
   headers:
     - name: x-csrf-token
-      value: 6nANjOeNtEUXfKzsZwQt9Q==
+      value: lxd5a8vch5iOyAQi9e4lLg==
   params:
     - name: sap-language
       value: en
